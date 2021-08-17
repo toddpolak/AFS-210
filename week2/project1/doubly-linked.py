@@ -21,31 +21,29 @@ class DoublyLinkedList:
             current = current.next
             yield val
 
-
     def size(self) -> int:
         # Returns the number of elements in the list
         return self.count
 
-
     def addFirst(self, data) -> None:
         # Add a node at the front of the list
-
+        self.addFirst(data)
 
     def addLast(self, data) -> None:
         # Add a node at the end of the list
+        self.addLast(data)
   
-
     def addAtIndex(self, data, index):
         # Add a node to the list at the given index position
+        self.addAtIndex(index)
         # If index equals to the length of linked list, the node will be appended to the end of linked list
+        if (index > len(data)): 
+            self.addLast(data)
         # If index is greater than the length, the data will not be inserted.
         # This function does not replace the data at the index, but pushes everything else down.
 
-
     def indexOf(self, data):
         # Search through the list. Return the index position if data is found, otherwise return -1    
-
-
 
     def add(self, data) -> None:
         # Append an item to the end of the list
@@ -124,7 +122,3 @@ class DoublyLinkedList:
         for node in self.iter():
              myStr += str(node)+ " "
         return myStr
-
-
-
-
