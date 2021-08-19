@@ -98,8 +98,8 @@ class DoublyLinkedList:
     def deleteAtIndex(self, index) -> None:
         # Delete the node at the index-th in the linked list, if the index is valid.
         
-        #print('index: ', index)
-        #print('self.count - 1: ', self.count-1)
+        print('index: ', index)
+        print('self.count - 1: ', self.count-1)
 
         if (index > (self.count-1)):
             return
@@ -177,14 +177,22 @@ items.add('with')
 items.add('you')
 items.add('!')
 
+#THIS IS RETURNING 0?
+#print(items.size())
+
 print(items)
 
-print(items.indexOf('you'))
+print(items.indexOf('with'))
 
-items.deleteAtIndex(items.indexOf('you'))
+#THIS ISN'T WORKING
+#items.deleteAtIndex(items.indexOf('with'))
+#delIdx = items.indexOf('with')
+#print(delIdx)
 
-delIdx = items.indexOf('you')
-print(delIdx)
-#items.deleteAtIndex(5)
+#THIS WORKS
+items.delete('you')
+
+#THIS ISN'T WORKING
+items.addAtIndex('us', 4)
 
 print(items)
