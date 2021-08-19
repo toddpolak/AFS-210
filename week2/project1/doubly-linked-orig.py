@@ -21,70 +21,32 @@ class DoublyLinkedList:
             current = current.next
             yield val
 
+
     def size(self) -> int:
         # Returns the number of elements in the list
         return self.count
 
+
     def addFirst(self, data) -> None:
         # Add a node at the front of the list
 
-        node = Node(data)
-        
-        if not self.head:
-            self.head = node
-        else:
-            node.next = self.head
-            self.head = node
-        
+
     def addLast(self, data) -> None:
         # Add a node at the end of the list
+  
 
-        node = Node(data)
-        
-        if not self.head:
-            self.head = node
-            self.tail = node
-        else:
-            self.tail.next = node
-            self.tail = node
-        
     def addAtIndex(self, data, index):
         # Add a node to the list at the given index position
         # If index equals to the length of linked list, the node will be appended to the end of linked list
         # If index is greater than the length, the data will not be inserted.
         # This function does not replace the data at the index, but pushes everything else down.
-        if (index > (len(data))):
-            return
-        if (index == len(data)): 
-            self.addLast(data)
-        else:
-            count = 1
-            curr = self.head
-            while count < index -1 and curr != None:
-                node = Node(data)
-                node.next = curr.next
-                curr.next = node
-            
+
 
     def indexOf(self, data):
-        # Search through the list. Return the index position if data is found, otherwise return -1
-        
-        self.count = 0
-        
-        #print('data: ', data)
-        #print('self.count: ', self.count)
-        
-        current_item = self.head
-        
-        while current_item != None:
-            if current_item.data == data:
-                return self.count
-            
-            current_item = current_item.next
-            self.count += 1
-            
-        return -1
-    
+        # Search through the list. Return the index position if data is found, otherwise return -1    
+
+
+
     def add(self, data) -> None:
         # Append an item to the end of the list
         self.addLast(data)
@@ -97,9 +59,6 @@ class DoublyLinkedList:
 
     def deleteAtIndex(self, index) -> None:
         # Delete the node at the index-th in the linked list, if the index is valid.
-        
-        #print('index: ', index)
-        #print('self.count - 1: ', self.count-1)
 
         if (index > (self.count-1)):
             return
@@ -165,29 +124,7 @@ class DoublyLinkedList:
         for node in self.iter():
              myStr += str(node)+ " "
         return myStr
-    
-# -----------------------------------------------
-items = DoublyLinkedList()
 
-items.add('May')
-items.add('the')
-items.add('Force')
-items.add('be')
-items.add('with')
-items.add('you')
-items.add('!')
 
-print(items)
 
-print(items.indexOf('you'))
 
-#print(items.indexOf('with'))
-#print(items.indexOf('may'))
-
-#delIdx = items.indexOf('you')
-#print(delIdx)
-
-#items.deleteAtIndex(items.indexOf('you'))
-#items.deleteAtIndex(5)
-
-#print(items)
