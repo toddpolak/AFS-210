@@ -181,13 +181,10 @@ print(items)
 
 print(items.indexOf('you'))
 
-#print(items.indexOf('with'))
-#print(items.indexOf('may'))
+items.deleteAtIndex(items.indexOf('you'))
 
-#delIdx = items.indexOf('you')
-#print(delIdx)
-
-#items.deleteAtIndex(items.indexOf('you'))
+delIdx = items.indexOf('you')
+print(delIdx)
 #items.deleteAtIndex(5)
 
-#print(items)
+print(items)
