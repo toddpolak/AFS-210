@@ -61,7 +61,6 @@ class DoublyLinkedList:
         node = Node(data)
         
         if (index > (self.count)):
-            print('index is greatger than item.size')
             return
         if (index == self.count): 
             self.addLast(data)
@@ -78,16 +77,15 @@ class DoublyLinkedList:
             
     def indexOf(self, data):
         # Search through the list. Return the index position if data is found, otherwise return -1
-
-        curIndx = 1
+        curIndx = 0
         current_item = self.head
         
         while current_item != None:
             if current_item.data == data:
-                return self.count
-
-            current_item = current_item.next
+                return curIndx
+            
             curIndx += 1
+            current_item = current_item.next
             
         return curIndx
     
@@ -170,8 +168,7 @@ class DoublyLinkedList:
         for node in self.iter():
              myStr += str(node)+ " "
         return myStr
-    
-# -----------------------------------------------
+
 items = DoublyLinkedList()
 
 items.add('May')
@@ -181,8 +178,6 @@ items.add('be')
 items.add('with')
 items.add('you')
 items.add('!')
-
-print('-----------------')
 
 print(items)
 
