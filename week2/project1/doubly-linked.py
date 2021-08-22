@@ -32,8 +32,10 @@ class DoublyLinkedList:
         
         if not self.head:
             self.head = node
+            self.tail = node # Per Instructor Review
         else:
             node.next = self.head
+            self.head.prev = node # Per Instructor Review
             self.head = node
             
         self.count += 1
@@ -48,6 +50,7 @@ class DoublyLinkedList:
             self.tail = node
         else:
             self.tail.next = node
+            node.prev = self.tail # Per Instructor Review
             self.tail = node
             
         self.count += 1
@@ -57,6 +60,8 @@ class DoublyLinkedList:
         # If index equals to the length of linked list, the node will be appended to the end of linked list
         # If index is greater than the length, the data will not be inserted.
         # This function does not replace the data at the index, but pushes everything else down.
+        
+        #need to incorporate back link (Per Instructor Review)
         
         node = Node(data)
         
@@ -73,10 +78,13 @@ class DoublyLinkedList:
                 node.next = temp.next
                 temp.next = node
                 
+                #temp.prev = node # Per Instructor Review?
+                
         self.count += 1
             
     def indexOf(self, data):
         # Search through the list. Return the index position if data is found, otherwise return -1
+        #curIndx = -1 # Per Instructor Review
         curIndx = 0
         current_item = self.head
         
@@ -87,7 +95,7 @@ class DoublyLinkedList:
             curIndx += 1
             current_item = current_item.next
             
-        return curIndx
+        return -1 #curIndx
     
     def add(self, data) -> None:
         # Append an item to the end of the list

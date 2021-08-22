@@ -30,7 +30,7 @@ def loop2Rec(i,even_sum):
         return even_sum
     elif (i % 2) == 0:
         even_sum += i
-    i += 1
+    #i += 1 # Per Instructor Review
     return loop2Rec(i+1,even_sum)
 
 # Call each of the four functions and print the results for each:
