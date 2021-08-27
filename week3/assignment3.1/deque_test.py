@@ -10,8 +10,7 @@ class Stack(deque):
     
     def pop(self, data):
         return data.pop()
-    
-     
+
 myDeque = deque(['One', 'Two', 'Three', 'Four', 'Five'])
 
 myStack = Stack()

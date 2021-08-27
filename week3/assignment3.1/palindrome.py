@@ -48,21 +48,24 @@ class Queue:
     
 def isPalindrome(word):
     myStack = Stack()
+    myQueue = Queue()
+    revWord = ''
     
     for elm in word:
         myStack.push(elm)
-        
-    revWord = ''
-    while not myStack.isEmpty():
-        revWord += myStack.pop()
 
+    while not myStack.isEmpty():
+        myQueue.enqueue(myStack.pop())
+
+    while not myQueue.isEmpty():
+        revWord += myQueue.dequeue()
+        
     if(word == revWord):
         return True
-    
+
     return False
     
 print(isPalindrome('racecar'))
 print(isPalindrome('noon'))
 print(isPalindrome('python'))
 print(isPalindrome('madam'))
-        
