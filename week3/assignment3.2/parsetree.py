@@ -1,5 +1,7 @@
 import print_tree
 
+#Create a node class to store data in a parse tree
+#Node should have reference links to left, right and parent 
 class Node:
     def __init__ (self, value, left=None, right=None, parent=None):
         self.val = value
@@ -9,6 +11,7 @@ class Node:
 
 root = Node("")
 
+#Create a function to build a parse tree from a fully parenthesized mathematical expression in infix notation.
 def buildParseTree(exp):
     explist = exp.split()
     currentNode = root
@@ -18,6 +21,7 @@ def buildParseTree(exp):
 
         #left parentheses, right parentheses, operators, and operands.
         if expression == '(':
+            
             # create a node and make it the left of the currentNode
             
             node = Node(expression)
@@ -28,7 +32,7 @@ def buildParseTree(exp):
 
         #elif expression == ')':
             # go up to the parent of the currentNode
-            
+
         #elif expression in '+-*/':
             # set value of the currentNode to that operator
             # create a node and make it the right child of the currentNode
@@ -52,6 +56,7 @@ def inOrder(node):
         print(node.val)
         inOrder(node.right)
         
+#Create a function to traverse and print the parse tree in pre-order. You will need to use recursion.
 def inPreOrder(node):
     # - Recursively do a preorder traversal of the left subtree
     # - Visit root node first
@@ -61,6 +66,7 @@ def inPreOrder(node):
         print(node.val)
         inPreOrder(node.right)
     
+#Create a function to traverse and print the parse tree in post-order. You will need to use recursion.
 def inPostOrder(node):
     # - Recursively do a postorder traversal of the left subtree
     # - Visit root node first
