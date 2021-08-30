@@ -21,9 +21,10 @@ def buildParseTree(exp):
             # create a node and make it the left of the currentNode
             
             node = Node(expression)
+            
             currentNode.left = node
             
-            # then descent to that left child (ie: currentNode equal to left child)  
+            # then descent to that left child (ie: currentNode equal to left child) 
 
         #elif expression == ')':
             # go up to the parent of the currentNode
