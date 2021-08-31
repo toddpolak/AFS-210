@@ -15,34 +15,59 @@ root = Node("")
 def buildParseTree(exp):
     explist = exp.split()
     currentNode = root
-
+    
+    print('root: ', root.val)
+    
     for expression in explist:
-        print(expression)
 
         #left parentheses, right parentheses, operators, and operands.
         if expression == '(':
             
+            #print('expression: ', expression)
+            
             # create a node and make it the left of the currentNode
-            
             node = Node(expression)
-            
             currentNode.left = node
+            #newNode.left = currentNode.left
             
-            # then descent to that left child (ie: currentNode equal to left child) 
-
-        #elif expression == ')':
+            #print('newNode: ', newNode.val)
+            
+            # then descent to that left child (ie: currentNode equal to left child)
+            currentNode = node
+            
+            #print('currentNode: ', currentNode.val)
+            
+        elif expression == ')':
             # go up to the parent of the currentNode
+            currentNode = currentNode.parent
 
-        #elif expression in '+-*/':
+        elif expression in '+-*/':
+            
+            #print('expression: ', expression)
+            
             # set value of the currentNode to that operator
+            currentNode.val = expression
+            
             # create a node and make it the right child of the currentNode
+            #newNode = Node(expression)
+            node = Node(expression)
+            currentNode.right = node
+   
+            #print('newNode: ', newNode.val)
+
             # then descend to that right child
+            currentNode = node
+            
+            #print('currentNode: ', currentNode.val)
 
         #elif expression not in '+-*/':
             # expression is a number
             # set value of the currentNode to that number
+            currentNode.val = expression
+            
             # go back up to our parent
-                
+            #currentNode = root
+            
         #else:
             #raise ValueError("Unknown Operator: " + expression)
 
@@ -76,12 +101,13 @@ def inPostOrder(node):
         print(node.val)
         inPostOrder(node.right)
     
-buildParseTree("( ( 11 * 2 ) + ( 10 - 2 ) )")
+#buildParseTree("( ( 11 * 2 ) + ( 10 - 2 ) )")
+buildParseTree("( 11 * 2 )")
 
 print_tree.print_tree(root)
 
-inOrder(root)
+#inOrder(root)
 
-inPreOrder(root)
+#inPreOrder(root)
 
-inPostOrder(root)
+#inPostOrder(root)
