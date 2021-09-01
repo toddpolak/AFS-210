@@ -9,25 +9,25 @@ class Node:
         self.right = right
         self.parent = parent
 
-root = Node("")
+root = Node('')
 
 #Create a function to build a parse tree from a fully parenthesized mathematical expression in infix notation.
 def buildParseTree(exp):
     explist = exp.split()
     currentNode = root
-    
+
     for expression in explist:
         
-        print('expression: ', expression)
-
         #left parentheses, right parentheses, operators, and operands.
         if expression == '(':
             
             # create a node and make it the left of the currentNode
             node = Node('')
             currentNode.left = node
+            
+            #set the parent
             currentNode.left.parent = currentNode
- 
+            
             # then descent to that left child (ie: currentNode equal to left child)
             currentNode = currentNode.left
             
@@ -35,30 +35,33 @@ def buildParseTree(exp):
 
             # go up to the parent of the currentNode
             currentNode = currentNode.parent
-
-        elif expression in '+-*/':
             
+        elif expression in '+-*/':
+
             # set value of the currentNode to that operator
             currentNode.val = expression
             
             # create a node and make it the right child of the currentNode
-            #newNode = Node(expression)
-            node = Node(expression)
+            node = Node('')
             currentNode.right = node
-   
+            
+            # set the parent
+            currentNode.right.parent = currentNode
+            
             # then descend to that right child
-            currentNode = node
+            currentNode = currentNode.right
 
         elif expression not in '+-*/':
+            
             # expression is a number
             # set value of the currentNode to that number
             currentNode.val = expression
-            
+
             # go back up to our parent
-            currentNode = root
+            currentNode = currentNode.parent
             
-        #else:
-            #raise ValueError("Unknown Operator: " + expression)
+        else:
+            raise ValueError("Unknown Operator: " + expression)
 
 #Create a function to traverse and print the parse tree in order .  You will need to use recursion.
 #def inOrder(node):
@@ -90,8 +93,8 @@ def buildParseTree(exp):
         #print(node.val)
         #inPostOrder(node.right)
     
-#buildParseTree("( ( 11 * 2 ) + ( 10 - 2 ) )")
-buildParseTree("( 11 * 2 )")
+buildParseTree("( ( 11 * 2 ) + ( 10 - 2 ) )")
+#buildParseTree("( 11 * 2 )")
 
 print_tree.print_tree(root)
 
