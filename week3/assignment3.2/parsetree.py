@@ -94,7 +94,6 @@ def buildParseTree(exp):
         #inPostOrder(node.right)
     
 buildParseTree("( ( 11 * 2 ) + ( 10 - 2 ) )")
-#buildParseTree("( 11 * 2 )")
 
 print_tree.print_tree(root)
 
