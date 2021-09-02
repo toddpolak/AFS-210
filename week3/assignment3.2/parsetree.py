@@ -1,4 +1,5 @@
 import print_tree
+from collections import deque
 
 #Create a node class to store data in a parse tree
 #Node should have reference links to left, right and parent 
@@ -62,43 +63,46 @@ def buildParseTree(exp):
             
         else:
             raise ValueError("Unknown Operator: " + expression)
-
-#Create a function to traverse and print the parse tree in order .  You will need to use recursion.
-#def inOrder(node):
-    # - Recursively do a inorder traversal of the left subtree
-    # - Visit root node first
-    # - Recursively do a inorder traversal of the right subtree
-    #if node:
-        #inOrder(node.left)
-        #print(node.val)
-        #inOrder(node.right)
         
 #Create a function to traverse and print the parse tree in pre-order. You will need to use recursion.
-#def inPreOrder(node):
+def inPreOrder(node):
+    # - Visit root node first
     # - Recursively do a preorder traversal of the left subtree
-    # - Visit root node first
     # - Recursively do a preorder traversal of the right subtree
-    #if node:
-        #inPreOrder(node.left)
-        #print(node.val)
-        #inPreOrder(node.right)
-    
+    if node:
+        print(node.val)
+        inPreOrder(node.left)
+        inPreOrder(node.right)
+
+#Create a function to traverse and print the parse tree in order .  You will need to use recursion.
+def inOrder(node):
+    # - Recursively do a inorder traversal of the left subtree
+    # - Visit root node
+    # - Recursively do a inorder traversal of the right subtree
+    if node:
+        inOrder(node.left)
+        print(node.val)
+        inOrder(node.right)
+
 #Create a function to traverse and print the parse tree in post-order. You will need to use recursion.
-#def inPostOrder(node):
+def inPostOrder(node):
     # - Recursively do a postorder traversal of the left subtree
-    # - Visit root node first
     # - Recursively do a postorder traversal of the right subtree
-    #if node:
-        #inPostOrder(node.left)
-        #print(node.val)
-        #inPostOrder(node.right)
-    
+    # - Visit root node
+    if node:
+        inPostOrder(node.left)
+        inPostOrder(node.right)
+        print(node.val)
+
 buildParseTree("( ( 11 * 2 ) + ( 10 - 2 ) )")
 
 print_tree.print_tree(root)
 
-#inOrder(root)
+print('Preorder:')
+inPreOrder(root)
 
-#inPreOrder(root)
+print('InOrder:')
+inOrder(root)
 
-#inPostOrder(root)
+print('Postorder:')
+inPostOrder(root)
