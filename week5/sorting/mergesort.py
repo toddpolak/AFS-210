@@ -1,26 +1,27 @@
 def mergeSort(nlist):
     
-    print("Splitting ", nlist)
-    
     # insert your code to complete the mergeSort function
     
+    # initial split:
+    print("Splitting ", nlist)
     list_length = len(nlist)
-    
     mid_point = list_length // 2
-    
-    #print('mid_point: ', mid_point)
-    
     left_half = nlist[:mid_point]
     
-    #print('left_half: ', left_half)
+    while len(left_half) != 1:
     
-    right_half = nlist[mid_point:]
+        # split the left side?:
+        print("Splitting ", left_half)
+        list_length = len(left_half)
+        mid_point = list_length // 2
+        left_half = nlist[:mid_point]
     
-    #print('right_half: ', right_half)
+
+    #right_half = nlist[mid_point:]
     
-    print("Merging ", nlist)
+    #print("Merging ", nlist)
     
-    print(merge(nlist, left_half, right_half))
+    #print(merge(nlist, left_half, right_half))
 
 def merge(nlist, lefthalf, righthalf):
     i=j=k=0       
@@ -44,7 +45,7 @@ def merge(nlist, lefthalf, righthalf):
         k=k+1
     return nlist
 
-myList = [55, 1, 26 ,20 ,63 ,7 ,51 ,74 ,81 ,40]
+myList = [55, 31, 26 ,20 ,63 ,7 ,51 ,74 ,81 ,40]
 
 #print('myList: ', myList)
 
