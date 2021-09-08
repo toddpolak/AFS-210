@@ -1,20 +1,20 @@
 def mergeSort(nlist):
-    
+
     print("Splitting ", nlist)
 
     # insert your code to complete the mergeSort function
-    
+
     list_length = len(nlist)
-    
+
     if list_length == 1:
         return nlist
 
     mid_point = list_length // 2
 
     left_side = mergeSort(nlist[:mid_point])
-    
+
     right_side = mergeSort(nlist[mid_point:])
-    
+
     print("Merging ", nlist)
 
     return merge(nlist, left_side, right_side)
