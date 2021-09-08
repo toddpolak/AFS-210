@@ -15,9 +15,11 @@ def mergeSort(nlist):
 
     right_side = mergeSort(nlist[mid_point:])
 
+    nlist = merge(nlist, left_side, right_side)
+    
     print("Merging ", nlist)
-
-    return merge(nlist, left_side, right_side)
+    
+    return nlist
 
 def merge(nlist, lefthalf, righthalf):
     i=j=k=0       
