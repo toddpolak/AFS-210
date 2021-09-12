@@ -2,7 +2,7 @@ import random
 
 def myShuffle(nlist):
     
-    # Time Complexity of this Algorithm: O(1) - Constant Time
+    # Time Complexity of this Algorithm: O(n) - Linear Time
     
     list_length = len(nlist)
     
