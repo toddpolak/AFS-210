@@ -4,11 +4,11 @@ import random
 # Quick Sort First
 #region
 def quick_sort_partitionFirst(a_list, start, end):
-    # list size is 1 or less (which doesn't make sense)
+
     if start >= end:
         return
 
-    # Call the partition helper function to split the list into two section 
+    # Call the partition helper function to split the list into two sections
     # divided between a pivot point
     pivot = partitionStart(a_list, start, end)
 
@@ -19,11 +19,11 @@ def quick_sort_partitionFirst(a_list, start, end):
 # Quick Sort Second
 #region
 def quick_sort_partitionSecond(a_list, start, end):
-        # list size is 1 or less (which doesn't make sense)
+
     if start >= end:
         return
     
-    # Call the partition helper function to split the list into two section 
+    # Call the partition helper function to split the list into two sections
     # divided between a pivot point
     pivot = partitionSecond(a_list, start, end)
 
@@ -34,16 +34,33 @@ def quick_sort_partitionSecond(a_list, start, end):
 # Quick Sort Last
 #region
 def quick_sort_partitionLast(a_list, start, end):
-        # list size is 1 or less (which doesn't make sense)
+
     if start >= end:
         return
     
-    # Call the partition helper function to split the list into two section 
+    # Call the partition helper function to split the list into two sections
     # divided between a pivot point
     pivot = partitionLast(a_list, start, end)
 
     quick_sort_partitionLast(a_list, start, pivot-1)
     quick_sort_partitionLast(a_list, pivot+1, end)
+#endregion
+
+# Quick Sort Middle
+
+# Quick Sort Random
+#region
+def quick_sort_partitionRandom(a_list, start, end):
+
+    if start >= end:
+        return
+    
+    # Call the partition helper function to split the list into two sections
+    # divided between a pivot point
+    piviot = partitionRandom(a_list, start, end)
+    
+    quick_sort_partitionRandom(a_list, start, piviot-1)
+    quick_sort_partitionRandom(a_list, piviot+1, end)
 #endregion
 
 # First Item
@@ -80,6 +97,34 @@ def partitionLast(a_list, start, end):
             a_list[i], a_list[j] = a_list[j], a_list[i]
             
     a_list[i+1], a_list[end] = a_list[end], a_list[i+1]
+    
+    return partition(a_list, start, end)
+#endregion
+
+# Middle Item
+#region
+def partitionMiddle(a_list, start, end):
+    
+    list_length = len(a_list)
+    
+    mid_point = list_length // 2
+    
+    pivot = a_list[mid_point] # pivot
+
+#endregion
+
+# Random Item
+#region
+def partitionRandom(a_list, start, end):
+    
+    # Generating a random number between the
+    # starting index of the array and the
+    # ending index of the array.
+    randpivot = random.randrange(start, end)
+    
+    # Swapping the starting element of
+    # the array and the pivot
+    a_list[start], a_list[randpivot] = a_list[randpivot], a_list[start]
     
     return partition(a_list, start, end)
 #endregion
@@ -125,6 +170,8 @@ def partition(a_list, start, end):
     return high
 #endregion
 
+# Output
+#region
 print("\nQuick Sort:\n")
 
 # ------------------------------------------
@@ -171,4 +218,19 @@ print(f"The execution time for Quick Sort Partition Last is: {end_time-start_tim
 
 # ------------------------------------------
 
+myList = [x for x in range(1000)]
+
+random.shuffle(myList)
+
+start_time = time.time()
+
+quick_sort_partitionRandom(myList,0,len(myList)-1)
+
+end_time = time.time()
+
+print(f"The execution time for Quick Sort Partition Random is: {end_time-start_time}")
+
+# ------------------------------------------
+
 print("\n")
+#endregion
