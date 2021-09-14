@@ -1,6 +1,7 @@
 import time
 import random
 
+# Quick Sort First
 #region
 def quick_sort_partitionFirst(a_list, start, end):
     # list size is 1 or less (which doesn't make sense)
@@ -15,6 +16,7 @@ def quick_sort_partitionFirst(a_list, start, end):
     quick_sort_partitionFirst(a_list, pivot+1, end)
 #endregion
 
+# Quick Sort Second
 #region
 def quick_sort_partitionSecond(a_list, start, end):
         # list size is 1 or less (which doesn't make sense)
@@ -28,7 +30,9 @@ def quick_sort_partitionSecond(a_list, start, end):
     quick_sort_partitionSecond(a_list, start, pivot-1)
     quick_sort_partitionSecond(a_list, pivot+1, end)
 #endregion
-    
+
+# Quick Sort Last
+#region
 def quick_sort_partitionLast(a_list, start, end):
         # list size is 1 or less (which doesn't make sense)
     if start >= end:
@@ -40,13 +44,29 @@ def quick_sort_partitionLast(a_list, start, end):
 
     quick_sort_partitionLast(a_list, start, pivot-1)
     quick_sort_partitionLast(a_list, pivot+1, end)
+#endregion
+
+# First Item
+#region
+def partitionStart(a_list, start, end):
+    return partition(a_list, start, end)
+#endregion
+
+# Second Item (used in the instructional video)
+#region
+def partitionSecond(a_list, start, end):
+    if start < end:
+        a_list[start], a_list[start+1] = a_list[start+1], a_list[start]
+    return partition(a_list, start, end)
+#endregion
+
+# Alternate Piviot Points ---------------------
     
-# Last item
+# Last Item
+#region
 def partitionLast(a_list, start, end):
     
     i = (start-1) # index of smaller element
-    
-    print('a_list: ', a_list)
     
     pivot = a_list[end] # pivot
     
@@ -61,23 +81,13 @@ def partitionLast(a_list, start, end):
             
     a_list[i+1], a_list[end] = a_list[end], a_list[i+1]
     
-    print('a_list: ', a_list)
-    
     return partition(a_list, start, end)
+#endregion
 
-def partitionStart(a_list, start, end):
-    return partition(a_list, start, end)
+# ------------------------------------------
 
-# Alternate Piviot Points ---------------------
-
-# Second item (used in the instructional video)
-def partitionSecond(a_list, start, end):
-    if start < end:
-        a_list[start], a_list[start+1] = a_list[start+1], a_list[start]
-    return partition(a_list, start, end)
-
+# Partition
 #region
-    
 def partition(a_list, start, end):
     # Select the first element as our pivot point
     pivot = a_list[start]
@@ -113,48 +123,52 @@ def partition(a_list, start, end):
     a_list[start], a_list[high] = a_list[high], a_list[start]
 
     return high
-
 #endregion
 
-#print("Quick Sort:")
-
-#myList = [54,26,93,17,77,31]
-
-#myList = [x for x in range(1000)]
-#random.shuffle(myList)
-
-#print(myList)
-
-#start_time = time.time()
-#quick_sort_partitionFirst(myList,0,len(myList)-1)
-#end_time = time.time()
-
-#print()
-#print("Sorted Listed: ")
-#print(myList)   
-
-#print(f"The execution time for Quick Sort Partition First is: {end_time-start_time}")
+print("\nQuick Sort:\n")
 
 # ------------------------------------------
 
-#myList = [x for x in range(1000)]
-#random.shuffle(myList)
+myList = [x for x in range(1000)]
 
-#start_time = time.time()
-#quick_sort_partitionSecond(myList,0,len(myList)-1)
-#end_time = time.time()
-
-#print(f"The execution time for Quick Sort Partition Second is: {end_time-start_time}")
-
-# ------------------------------------------
-
-#myList = [x for x in range(1000)]
-#random.shuffle(myList)
-
-myList = [54,26,93,17,77,31]
+random.shuffle(myList)
 
 start_time = time.time()
+
+quick_sort_partitionFirst(myList,0,len(myList)-1)
+
+end_time = time.time()
+
+print(f"The execution time for Quick Sort Partition First is: {end_time-start_time}")
+
+# ------------------------------------------
+
+myList = [x for x in range(1000)]
+
+random.shuffle(myList)
+
+start_time = time.time()
+
+quick_sort_partitionSecond(myList,0,len(myList)-1)
+
+end_time = time.time()
+
+print(f"The execution time for Quick Sort Partition Second is: {end_time-start_time}")
+
+# ------------------------------------------
+
+myList = [x for x in range(1000)]
+
+random.shuffle(myList)
+
+start_time = time.time()
+
 quick_sort_partitionLast(myList,0,len(myList)-1)
+
 end_time = time.time()
 
 print(f"The execution time for Quick Sort Partition Last is: {end_time-start_time}")
+
+# ------------------------------------------
+
+print("\n")
