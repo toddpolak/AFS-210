@@ -4,7 +4,6 @@ import random
 # Quick Sort First
 #region
 def quick_sort_partitionFirst(a_list, start, end):
-
     if start >= end:
         return
 
@@ -19,7 +18,6 @@ def quick_sort_partitionFirst(a_list, start, end):
 # Quick Sort Second
 #region
 def quick_sort_partitionSecond(a_list, start, end):
-
     if start >= end:
         return
     
@@ -34,10 +32,9 @@ def quick_sort_partitionSecond(a_list, start, end):
 # Quick Sort Last
 #region
 def quick_sort_partitionLast(a_list, start, end):
-
     if start >= end:
         return
-    
+
     # Call the partition helper function to split the list into two sections
     # divided between a pivot point
     pivot = partitionLast(a_list, start, end)
@@ -47,6 +44,18 @@ def quick_sort_partitionLast(a_list, start, end):
 #endregion
 
 # Quick Sort Middle
+#region
+def quick_sort_partitionMiddle(a_list, start, end):
+    if start >= end:
+        return
+    
+    # Call the partition helper function to split the list into two sections
+    # divided between a pivot point
+    pivot = partitionMiddle(a_list, start, end)
+
+    quick_sort_partitionMiddle(a_list, start, pivot-1)
+    quick_sort_partitionMiddle(a_list, pivot+1, end)
+#endregion
 
 # Quick Sort Random
 #region
@@ -54,7 +63,7 @@ def quick_sort_partitionRandom(a_list, start, end):
 
     if start >= end:
         return
-    
+
     # Call the partition helper function to split the list into two sections
     # divided between a pivot point
     piviot = partitionRandom(a_list, start, end)
@@ -110,7 +119,12 @@ def partitionMiddle(a_list, start, end):
     mid_point = list_length // 2
     
     pivot = a_list[mid_point] # pivot
+    
+    # Swapping the starting element of
+    # the array and the pivot
+    a_list[start], a_list[pivot] = a_list[pivot], a_list[start]
 
+    return partition(a_list, start, end)
 #endregion
 
 # Random Item
@@ -120,11 +134,11 @@ def partitionRandom(a_list, start, end):
     # Generating a random number between the
     # starting index of the array and the
     # ending index of the array.
-    randpivot = random.randrange(start, end)
+    pivot = random.randrange(start, end) # pivot
     
     # Swapping the starting element of
     # the array and the pivot
-    a_list[start], a_list[randpivot] = a_list[randpivot], a_list[start]
+    a_list[start], a_list[pivot] = a_list[pivot], a_list[start]
     
     return partition(a_list, start, end)
 #endregion
@@ -215,6 +229,20 @@ quick_sort_partitionLast(myList,0,len(myList)-1)
 end_time = time.time()
 
 print(f"The execution time for Quick Sort Partition Last is: {end_time-start_time}")
+
+# ------------------------------------------
+
+myList = [x for x in range(1000)]
+
+random.shuffle(myList)
+
+start_time = time.time()
+
+quick_sort_partitionMiddle(myList,0,len(myList)-1)
+
+end_time = time.time()
+
+print(f"The execution time for Quick Sort Partition Middle is: {end_time-start_time}")
 
 # ------------------------------------------
 
