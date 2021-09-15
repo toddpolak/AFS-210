@@ -1,5 +1,6 @@
+from queue import Queue
 
-class Song:
+class Song():
     def __init__(self,title,artist):
         self.title = title
         self.artist = artist
@@ -24,9 +25,39 @@ class Song:
         
     def __gt__(self, other):
         return ((self.title, self.artist) < (other.title, other.artist))
+    
+class Queue:
+    def __init__(self):
+        self.items = []
+        #super(Player, self).__init__()
+        #pass
         
+    def add_song(self, song):
+        #self.items.append(song)
+        #self.enqueue(song)
+        #return data.append(song)
+        self.items.insert(0, song)
+        
+    def size(self):
+        return len(self.items)
+        
+    #def songList(self):
 
+        #for item in self.items[len(self.items)-1]:
+            #print(item)
+        
+        #return self.items[len(self.items)-1]
+        #return self.items
+        
+        #print('self: ', self)
+        
+        #for items in len(self.items):
+            #print(items)
+            #print(items)
+            #return items
 
+# Menu 
+#region 
 def menu():
     print(20 * "-" , "MENU" , 20 * "-")
     print("1. Add Song to Playlist")
@@ -39,7 +70,11 @@ def menu():
     print("8. Show Current Playlist Order")
     print("0. Exit")
     print(47 * "-")
-
+#endregion
+    
+#songList = deque([])
+#media_player = Player()
+media_player = Queue()
 
 while True:
     menu()
@@ -47,8 +82,17 @@ while True:
 
     if choice == 1:
         # Add code to prompt user for Song Title and Artist Name
+        artist = input('Enter the Song Artist:')
+        title = input('Enter Song title: ')
         # Add song to playlist
+        
+        song = Song(title=title, artist=artist)
+
+        media_player.add_song(song)
+        
         print("New Song Added to Playlist")
+        
+
     elif choice == 2:
         # Prompt user for Song Title 
         # remove song from playlist
@@ -75,8 +119,10 @@ while True:
     elif choice == 8:
         # Show the current song list order
         print("\nSong list:\n")
+        
+        for item in media_player.items:
+            print(item)
+        
     elif choice == 0:
         print("Goodbye.")
         break
-
-            
