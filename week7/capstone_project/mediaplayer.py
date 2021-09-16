@@ -73,9 +73,10 @@ def menu():
     print(47 * "-")
 #endregion
     
-#songList = deque([])
-#media_player = Player()
+
 media_player = Queue()
+
+current_song = 0
 
 while True:
     menu()
@@ -85,41 +86,45 @@ while True:
         # Add code to prompt user for Song Title and Artist Name
         artist = input('Enter the Song Artist:')
         title = input('Enter Song title: ')
-        # Add song to playlist
-        
-        song = Song(title=title, artist=artist)
 
+        # Add song to playlist
+        song = Song(title=title, artist=artist)
         media_player.add_song(song)
         
         print("New Song Added to Playlist")
         
-
     elif choice == 2:
         # Prompt user for Song Title 
         # remove song from playlist
         print("Song Removed to Playlist")
+
     elif choice == 3:
         # Play the playlist from the beginning
         # Display song name that is currently playing
-        print("Playing....")        
+        print("Playing....")
+        
     elif choice == 4:
         # Skip to the next song on the playlist
         # Display song name that is now playing
-        print("Skipping....")                     
+        print("Skipping....")  
+        
     elif choice == 5:
         # Go back to the previous song on the playlist
         # Display song name that is now playing
-        print("Replaying....")  
+        print("Replaying....")
+
     elif choice == 6:
         # Randomly shuffle the playlist and play the first song
         # Display song name that is now playing
         
         random.shuffle(media_player.items)
         
-        print("Shuffling....")          
+        print("Shuffling....")
+        
     elif choice == 7:
         # Display the song name and artist of the currently playing song
-        print("Currently playing: ", end=" ")    
+        print("Currently playing: ", end=" ")
+
     elif choice == 8:
         # Show the current song list order
         print("\nSong list:\n")
