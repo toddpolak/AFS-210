@@ -1,4 +1,5 @@
 from queue import Queue
+import random
 
 class Song():
     def __init__(self,title,artist):
@@ -112,6 +113,9 @@ while True:
     elif choice == 6:
         # Randomly shuffle the playlist and play the first song
         # Display song name that is now playing
+        
+        random.shuffle(media_player.items)
+        
         print("Shuffling....")          
     elif choice == 7:
         # Display the song name and artist of the currently playing song
