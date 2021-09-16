@@ -1,6 +1,8 @@
 from queue import Queue
 import random
 
+#region
+# Song Class
 class Song():
     def __init__(self,title,artist):
         self.title = title
@@ -26,7 +28,8 @@ class Song():
         
     def __gt__(self, other):
         return ((self.title, self.artist) < (other.title, other.artist))
-    
+#endregion
+
 class Queue:
     def __init__(self):
         self.items = []
@@ -42,20 +45,9 @@ class Queue:
     def size(self):
         return len(self.items)
         
-    #def songList(self):
-
-        #for item in self.items[len(self.items)-1]:
-            #print(item)
+    def play(self, song_index):
         
-        #return self.items[len(self.items)-1]
-        #return self.items
-        
-        #print('self: ', self)
-        
-        #for items in len(self.items):
-            #print(items)
-            #print(items)
-            #return items
+        print(self.items[song_index])
 
 # Menu 
 #region 
@@ -76,7 +68,15 @@ def menu():
 
 media_player = Queue()
 
-current_song = 0
+# Default Playlist
+media_player.add_song(Song('Title 1', 'Artist 1'))
+media_player.add_song(Song('Title 2', 'Artist 2'))
+media_player.add_song(Song('Title 3', 'Artist 3'))
+media_player.add_song(Song('Title 4', 'Artist 4'))
+media_player.add_song(Song('Title 5', 'Artist 5'))
+
+# Set the default song index
+current_song_index = 0
 
 while True:
     menu()
@@ -101,6 +101,9 @@ while True:
     elif choice == 3:
         # Play the playlist from the beginning
         # Display song name that is currently playing
+        
+        media_player.play(current_song_index)
+        
         print("Playing....")
         
     elif choice == 4:
