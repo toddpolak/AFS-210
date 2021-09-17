@@ -1,8 +1,8 @@
 from queue import Queue
 import random
 
-#region
 # Song Class
+#region
 class Song():
     def __init__(self,title,artist):
         self.title = title
@@ -33,21 +33,25 @@ class Song():
 class Queue:
     def __init__(self):
         self.items = []
-        #super(Player, self).__init__()
-        #pass
-        
+
     def add_song(self, song):
-        #self.items.append(song)
-        #self.enqueue(song)
-        #return data.append(song)
         self.items.insert(0, song)
         
     def size(self):
         return len(self.items)
         
     def play(self, song_index):
-        
         print(self.items[song_index])
+        
+    def removeSong(self, title):
+        song_index = 0
+        
+        for item in self.items:
+            if item.title == title:
+                break   
+            song_index += 1
+        
+        self.items.pop(song_index)
 
 # Menu 
 #region 
@@ -69,11 +73,11 @@ def menu():
 media_player = Queue()
 
 # Default Playlist
-media_player.add_song(Song('Title 1', 'Artist 1'))
-media_player.add_song(Song('Title 2', 'Artist 2'))
-media_player.add_song(Song('Title 3', 'Artist 3'))
-media_player.add_song(Song('Title 4', 'Artist 4'))
-media_player.add_song(Song('Title 5', 'Artist 5'))
+media_player.add_song(Song('The Walk', 'Mayer Hawthorne'))
+media_player.add_song(Song('What Lovers Do', 'Maroon 5'))
+media_player.add_song(Song('Heartbreaker', 'Mariah Carey'))
+media_player.add_song(Song('24K Magic', 'Bruno Mars'))
+media_player.add_song(Song('Wifey', 'Next'))
 
 # Set the default song index
 current_song_index = 0
@@ -95,16 +99,22 @@ while True:
         
     elif choice == 2:
         # Prompt user for Song Title 
+        title = input('Enter the song title to be removed: ')
+        
         # remove song from playlist
-        print("Song Removed to Playlist")
+        media_player.removeSong(title)
+        
+        print("Song Removed from Playlist")
 
     elif choice == 3:
         # Play the playlist from the beginning
         # Display song name that is currently playing
         
+        print("Playing....")
+        
         media_player.play(current_song_index)
         
-        print("Playing....")
+        
         
     elif choice == 4:
         # Skip to the next song on the playlist
