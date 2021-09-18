@@ -30,9 +30,18 @@ class Song():
         return ((self.title, self.artist) < (other.title, other.artist))
 #endregion
 
+# Queue Class
+#region
 class Queue:
-    def __init__(self):
+    def __init__(self, current_song_index=0):
         self.items = []
+        self.set_current_song_index(current_song_index)
+        
+    def get_current_song_index(self):
+        return (self._current_song_index)
+    
+    def set_current_song_index(self, index):
+        self._current_song_index = index
 
     def add_song(self, song):
         self.items.insert(0, song)
@@ -41,8 +50,45 @@ class Queue:
         return len(self.items)
         
     def play(self, song_index):
-        print(self.items[song_index])
         
+        print("\nPlaying....")
+        
+        self.current_song_index = song_index
+        
+        print(self.items[self.current_song_index])
+        
+    def show_play_list(self):
+        num = 1
+        
+        print("\nSong list:\n")
+        
+        for item in self.items:
+            print(str(num) + '. ' + str(item))
+            num += 1
+        
+    def Next(self):
+        
+        # current song index
+        #print('song index: ', self.current_song_index)
+        
+        playlist = len(self.items) - 1
+        #cur_song = current_song_index
+   
+        # length of playlist -1
+        #print('length of playlist: ', playlist)
+        
+        if self.current_song_index == playlist:
+            next_song = 0
+        else:
+            next_song = self.current_song_index + 1
+            
+        print("\nSkipping....")
+            
+        self.play(next_song)
+        
+    #def Prev(self):
+        
+
     def removeSong(self, title):
         song_index = 0
         
@@ -52,10 +98,12 @@ class Queue:
             song_index += 1
         
         self.items.pop(song_index)
+#endregion
 
 # Menu 
 #region 
 def menu():
+    print('\n')
     print(20 * "-" , "MENU" , 20 * "-")
     print("1. Add Song to Playlist")
     print("2. Remove song from Playlist")
@@ -67,35 +115,40 @@ def menu():
     print("8. Show Current Playlist Order")
     print("0. Exit")
     print(47 * "-")
+    print('\n')
 #endregion
     
-
 media_player = Queue()
 
 # Default Playlist
-media_player.add_song(Song('The Walk', 'Mayer Hawthorne'))
-media_player.add_song(Song('What Lovers Do', 'Maroon 5'))
-media_player.add_song(Song('Heartbreaker', 'Mariah Carey'))
-media_player.add_song(Song('24K Magic', 'Bruno Mars'))
-media_player.add_song(Song('Wifey', 'Next'))
+#media_player.add_song(Song('The Walk', 'Mayer Hawthorne'))
+#media_player.add_song(Song('What Lovers Do', 'Maroon 5'))
+#media_player.add_song(Song('Heartbreaker', 'Mariah Carey'))
+#media_player.add_song(Song('24K Magic', 'Bruno Mars'))
+#media_player.add_song(Song('Wifey', 'Next'))
 
-# Set the default song index
-current_song_index = 0
+media_player.add_song(Song('Title 5', 'Artist 5'))
+media_player.add_song(Song('Title 4', 'Artist 4'))
+media_player.add_song(Song('Title 3', 'Artist 3'))
+media_player.add_song(Song('Title 2', 'Artist 2'))
+media_player.add_song(Song('Title 1', 'Artist 1'))
 
+# Media Player
+#region
 while True:
     menu()
     choice = int(input())
 
     if choice == 1:
         # Add code to prompt user for Song Title and Artist Name
-        artist = input('Enter the Song Artist:')
+        artist = input('Enter the Song Artist: ')
         title = input('Enter Song title: ')
 
         # Add song to playlist
         song = Song(title=title, artist=artist)
         media_player.add_song(song)
         
-        print("New Song Added to Playlist")
+        print("New Song: " + song.title + " Added to Playlist")
         
     elif choice == 2:
         # Prompt user for Song Title 
@@ -104,22 +157,23 @@ while True:
         # remove song from playlist
         media_player.removeSong(title)
         
-        print("Song Removed from Playlist")
+        print("Song: " + song.title + " Removed from Playlist")
 
     elif choice == 3:
         # Play the playlist from the beginning
         # Display song name that is currently playing
         
-        print("Playing....")
+        #print("Playing....")
         
-        media_player.play(current_song_index)
-        
-        
+        #media_player.play(current_song_index)
+        media_player.play(0)
         
     elif choice == 4:
         # Skip to the next song on the playlist
         # Display song name that is now playing
-        print("Skipping....")  
+        #print("Skipping....")
+        
+        media_player.Next()
         
     elif choice == 5:
         # Go back to the previous song on the playlist
@@ -134,17 +188,22 @@ while True:
         
         print("Shuffling....")
         
+        media_player.show_play_list()
+        
     elif choice == 7:
         # Display the song name and artist of the currently playing song
         print("Currently playing: ", end=" ")
 
     elif choice == 8:
         # Show the current song list order
-        print("\nSong list:\n")
+        #print("\nSong list:\n")
         
-        for item in media_player.items:
-            print(item)
+        media_player.show_play_list()
+        
+        #for item in media_player.items:
+            #print(item)
         
     elif choice == 0:
         print("Goodbye.")
         break
+#endregion
