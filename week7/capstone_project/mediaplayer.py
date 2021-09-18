@@ -41,7 +41,8 @@ class Queue:
         return (self._current_song_index)
     
     def set_current_song_index(self, index):
-        self._current_song_index = index
+        #self._current_song_index = index
+        self.current_song_index = index
 
     def add_song(self, song):
         self.items.insert(0, song)
@@ -65,8 +66,14 @@ class Queue:
         for item in self.items:
             print(str(num) + '. ' + str(item))
             num += 1
+            
+    def show_current_song(self):
         
-    def Next(self):
+        print("\nCurrently playing:")
+        
+        print(self.items[self.current_song_index])
+        
+    def next(self):
         
         # current song index
         #print('song index: ', self.current_song_index)
@@ -86,7 +93,21 @@ class Queue:
             
         self.play(next_song)
         
-    #def Prev(self):
+    def prev(self):
+        
+        playlist = len(self.items) - 1
+        
+        #print('playlist: ', playlist)
+        #print('current song index: ', self.current_song_index)
+
+        if self.current_song_index == playlist:
+            prev_song = 0
+        else:
+            prev_song = self.current_song_index - 1
+            
+        print("Replaying....")
+        
+        self.play(prev_song)
         
 
     def removeSong(self, title):
@@ -121,17 +142,17 @@ def menu():
 media_player = Queue()
 
 # Default Playlist
-#media_player.add_song(Song('The Walk', 'Mayer Hawthorne'))
-#media_player.add_song(Song('What Lovers Do', 'Maroon 5'))
-#media_player.add_song(Song('Heartbreaker', 'Mariah Carey'))
-#media_player.add_song(Song('24K Magic', 'Bruno Mars'))
-#media_player.add_song(Song('Wifey', 'Next'))
+media_player.add_song(Song('The Walk', 'Mayer Hawthorne'))
+media_player.add_song(Song('What Lovers Do', 'Maroon 5'))
+media_player.add_song(Song('Heartbreaker', 'Mariah Carey'))
+media_player.add_song(Song('24K Magic', 'Bruno Mars'))
+media_player.add_song(Song('Wifey', 'Next'))
 
-media_player.add_song(Song('Title 5', 'Artist 5'))
-media_player.add_song(Song('Title 4', 'Artist 4'))
-media_player.add_song(Song('Title 3', 'Artist 3'))
-media_player.add_song(Song('Title 2', 'Artist 2'))
-media_player.add_song(Song('Title 1', 'Artist 1'))
+#media_player.add_song(Song('Title 5', 'Artist 5'))
+#media_player.add_song(Song('Title 4', 'Artist 4'))
+#media_player.add_song(Song('Title 3', 'Artist 3'))
+#media_player.add_song(Song('Title 2', 'Artist 2'))
+#media_player.add_song(Song('Title 1', 'Artist 1'))
 
 # Media Player
 #region
@@ -173,12 +194,14 @@ while True:
         # Display song name that is now playing
         #print("Skipping....")
         
-        media_player.Next()
+        media_player.next()
         
     elif choice == 5:
         # Go back to the previous song on the playlist
         # Display song name that is now playing
-        print("Replaying....")
+        #print("Replaying....")
+        
+        media_player.prev()
 
     elif choice == 6:
         # Randomly shuffle the playlist and play the first song
@@ -192,7 +215,8 @@ while True:
         
     elif choice == 7:
         # Display the song name and artist of the currently playing song
-        print("Currently playing: ", end=" ")
+        #print("Currently playing: ", end=" ")
+        media_player.show_current_song()
 
     elif choice == 8:
         # Show the current song list order
