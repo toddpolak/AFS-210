@@ -65,7 +65,7 @@ class Queue:
     def show_play_list(self):
         num = 1
 
-        print("\nSong list:\n")
+        print("\nSong List:\n")
 
         for item in self.items:
             print(str(num) + '. ' + str(item))
@@ -73,7 +73,7 @@ class Queue:
 
     def show_current_song(self):
         if self.curently_playing:
-            print("\nCurrently playing:")
+            print("\nCurrently Playing:")
 
             print(self.items[self.current_song_index])
         else:
@@ -81,9 +81,9 @@ class Queue:
 
     def next(self):
         if self.curently_playing:
-            playlist = len(self.items) - 1
+            playlist_length = len(self.items) - 1
 
-            if self.current_song_index == playlist:
+            if self.current_song_index == playlist_length:
                 next_song = 0
             else:
                 next_song = self.current_song_index + 1
@@ -174,7 +174,7 @@ while True:
     if choice == 1:
         # Add code to prompt user for Song Title and Artist Name
         artist = input('Enter the Song Artist: ')
-        title = input('Enter Song title: ')
+        title = input('Enter Song Title: ')
 
         # Add song to playlist
         song = Song(title=title, artist=artist)
@@ -184,7 +184,7 @@ while True:
         
     elif choice == 2:
         # Prompt user for Song Title 
-        title = input('Enter the song title to be removed: ')
+        title = input('Enter the Song Title to be Removed: ')
         
         # remove song from playlist
         media_player.removeSong(title)
