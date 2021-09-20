@@ -54,7 +54,6 @@ class Queue:
         return len(self.items)
 
     def play(self, song_index):
-
         self.current_song_index = song_index
         
         self.set_currently_playing(True)
@@ -73,36 +72,42 @@ class Queue:
             num += 1
 
     def show_current_song(self):
-        print("\nCurrently playing:")
+        if self.curently_playing:
+            print("\nCurrently playing:")
 
-        print(self.items[self.current_song_index])
+            print(self.items[self.current_song_index])
+        else:
+            print('\nNothing is Playing!')
 
     def next(self):
-        
-        print('Currently Playing: ', self.curently_playing)
-        
-        playlist = len(self.items) - 1
+        if self.curently_playing:
+            playlist = len(self.items) - 1
 
-        if self.current_song_index == playlist:
-            next_song = 0
+            if self.current_song_index == playlist:
+                next_song = 0
+            else:
+                next_song = self.current_song_index + 1
+
+            print("\nSkipping....")
+
+            self.play(next_song)
         else:
-            next_song = self.current_song_index + 1
-
-        print("\nSkipping....")
-
-        self.play(next_song)
+            print('\nNothing is Playing!')
 
     def prev(self):
-        playlist = len(self.items) - 1
+        if self.curently_playing:
+            playlist_length = len(self.items) - 1
+            
+            if self.current_song_index == 0:
+                prev_song = playlist_length
+            else:
+                prev_song = self.current_song_index - 1
 
-        if self.current_song_index == playlist:
-            prev_song = 0
+            print("\nReplaying....")
+            
+            self.play(prev_song)
         else:
-            prev_song = self.current_song_index - 1
-
-        print("\nReplaying....")
-
-        self.play(prev_song)
+            print('\nNothing is Playing!')
 
     def removeSong(self, title):
         song_index = 0
@@ -118,7 +123,6 @@ class Queue:
         list_length = self.size()
         
         for i in range(list_length):
-            
             # pop off the first element and append it to the end of the list
             first_number = self.items.pop(0)
             self.items.append(first_number)
@@ -129,7 +133,6 @@ class Queue:
             # pop off that random element and append to the end of the list
             list_element = self.items.pop(random_num)
             self.items.append(list_element)
-
 #endregion
 
 # Menu 
@@ -180,7 +183,6 @@ while True:
         print("New Song: " + song.title + " Added to Playlist")
         
     elif choice == 2:
-    
         # Prompt user for Song Title 
         title = input('Enter the song title to be removed: ')
         
@@ -220,12 +222,10 @@ while True:
         media_player.play(0)
 
     elif choice == 7:
-
         # Display the song name and artist of the currently playing song
         media_player.show_current_song()
 
     elif choice == 8:
-
         # Show the current song list order
         media_player.show_play_list()
 
