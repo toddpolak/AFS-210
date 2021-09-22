@@ -122,11 +122,12 @@ class Queue:
     def shuffle(self):
         list_length = self.size()
         
-        for i in range(list_length):
+        for i in range(list_length // 2):
             # pop off the first element and append it to the end of the list
             first_number = self.items.pop(0)
             self.items.append(first_number)
-            
+        
+        for i in range(list_length):
             # generate a random number based on the size of the list
             random_num = random.randint(0, list_length - 1)
 
@@ -174,7 +175,12 @@ while True:
     if choice == 1:
         # Add code to prompt user for Song Title and Artist Name
         artist = input('Enter the Song Artist: ')
+        
+        # Add error handling for blank song artist
+        
         title = input('Enter Song Title: ')
+        
+        # Add error handling for blank song title
 
         # Add song to playlist
         song = Song(title=title, artist=artist)
