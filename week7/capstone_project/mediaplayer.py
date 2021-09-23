@@ -176,6 +176,10 @@ while True:
         # Add code to prompt user for Song Title and Artist Name
         artist = input('Enter the Song Artist: ')
         
+        #if not artist:
+            #print('You must provide a value.')
+                
+        
         # Add error handling for blank song artist
         
         title = input('Enter Song Title: ')
