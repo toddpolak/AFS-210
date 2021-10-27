@@ -114,11 +114,10 @@ class Queue:
 
         for item in self.items:
             if item.title == title:
+                self.items.pop(song_index)
                 break   
             song_index += 1
 
-        self.items.pop(song_index)
-        
     def shuffle(self):
         list_length = self.size()
         
